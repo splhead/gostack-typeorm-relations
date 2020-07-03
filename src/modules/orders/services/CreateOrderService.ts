@@ -68,12 +68,12 @@ class CreateOrderService {
       };
     });
 
+    await this.productsRepository.updateQuantity(products);
+
     const order = await this.ordersRepository.create({
       customer,
       products: productsToSave,
     });
-
-    await this.productsRepository.updateQuantity(products);
 
     return order;
   }
